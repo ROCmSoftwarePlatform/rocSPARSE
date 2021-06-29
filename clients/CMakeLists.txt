@@ -116,13 +116,9 @@ add_custom_command(OUTPUT "${ROCSPARSE_GENTEST}"
 
 add_custom_target(rocsparse-common DEPENDS "${ROCSPARSE_COMMON}" "${ROCSPARSE_TEMPLATE}" "${ROCSPARSE_GENTEST}")
 
-# Client packaging
-include(../cmake/Packaging.cmake)
-
 if(BUILD_CLIENTS_SAMPLES OR BUILD_CLIENTS_BENCHMARKS OR BUILD_CLIENTS_TESTS)
-  rocm_create_package_clients(LIB_NAME rocsparse
-                              DESCRIPTION "Radeon Open Compute SPARSE library"
-                              MAINTAINER "rocSPARSE Maintainer <rocsparse-maintainer@amd.com>"
-                              SECTION "dev"
-                              VERSION ${rocsparse_VERSION})
+        install(
+                DIRECTORY "${PROJECT_BINARY_DIR}/staging/"
+                DESTINATION "rocsparse/bin/"
+                COMPONENT "clients")
 endif()

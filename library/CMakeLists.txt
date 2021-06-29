@@ -122,8 +122,8 @@ rocm_export_targets(TARGETS roc::rocsparse
 rocm_install_symlink_subdir(rocsparse)
 
 # Package specific CPACK vars
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-rocclr (>= 3.5.0)")
-set(CPACK_RPM_PACKAGE_REQUIRES "hip-rocclr >= 3.5.0")
+set(CPACK_RPM_UNSPECIFIED_PACKAGE_REQUIRES "hip-rocclr >= 3.5.0")
+set(CPACK_DEBIAN_UNSPECIFIED_PACKAGE_DEPENDS "hip-rocclr (>= 3.5.0)")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/../LICENSE.md")
 
 if(NOT CPACK_PACKAGING_INSTALL_PREFIX)
@@ -141,6 +141,7 @@ rocm_create_package(
   NAME ${package_name}
   DESCRIPTION "Radeon Open Compute SPARSE library"
   MAINTAINER "rocSPARSE Maintainer <rocsparse-maintainer@amd.com>"
+  COMPONENTS clients
   LDCONFIG
   LDCONFIG_DIR ${ROCSPARSE_CONFIG_DIR}
 )
